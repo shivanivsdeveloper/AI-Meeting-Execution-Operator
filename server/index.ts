@@ -12,6 +12,8 @@ import analyticsRoutes from './routes/analytics.js';
 import approvalsRoutes from './routes/approvals.js';
 import integrationsRoutes from './routes/integrations.js';
 import sharedRoutes from './routes/shared.js';
+import participantRoutes from './routes/participant.js';
+import trainingRoutes from './routes/training.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,6 +42,8 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/approvals', approvalsRoutes);
 app.use('/api/integrations', integrationsRoutes);
+app.use('/api/participant', participantRoutes);
+app.use('/api/training', trainingRoutes);
 app.use('/api', sharedRoutes);
 
 // Health check

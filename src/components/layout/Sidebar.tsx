@@ -10,8 +10,10 @@ import { useAuth } from '../../context/AuthContext';
 
 export type NavTab = 
   | 'dashboard' 
+  | 'ai-participant'
   | 'meetings' 
   | 'ai-operator' 
+  | 'model-training'
   | 'tasks' 
   | 'decisions' 
   | 'projects' 
@@ -48,12 +50,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const navItems: { id: NavTab; label: string; icon: React.ReactNode; badge?: number; badgeColor?: string; group?: string }[] = [
     { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" />, group: 'Core' },
+    { id: 'ai-participant', label: 'AI Participant', icon: <Bot className="w-5 h-5" />, badge: 1, badgeColor: 'bg-gradient-to-r from-brand-500 to-accent-cyan text-white animate-pulse', group: 'Core' },
     { id: 'meetings', label: 'Meetings', icon: <Mic className="w-5 h-5" />, group: 'Core' },
-    { id: 'ai-operator', label: 'AI Operator', icon: <Bot className="w-5 h-5" />, badge: 1, badgeColor: 'bg-brand-500 text-white animate-pulse', group: 'Core' },
+    { id: 'ai-operator', label: 'AI Operator', icon: <Sparkles className="w-5 h-5" />, group: 'Core' },
     { id: 'tasks', label: 'Tasks', icon: <CheckSquare className="w-5 h-5" />, badge: inProgressTasksCount, group: 'Execution' },
     { id: 'decisions', label: 'Decisions', icon: <Sparkles className="w-5 h-5" />, group: 'Execution' },
     { id: 'approvals', label: 'Approvals Queue', icon: <ShieldCheck className="w-5 h-5" />, badge: pendingApprovalsCount, badgeColor: 'bg-amber-500 text-black', group: 'Execution' },
     { id: 'simulator', label: 'Scenario Simulator', icon: <Flame className="w-5 h-5" />, group: 'Execution' },
+    { id: 'model-training', label: 'AI Model Training', icon: <Brain className="w-5 h-5" />, group: 'Intelligence' },
     { id: 'projects', label: 'Projects', icon: <FolderKanban className="w-5 h-5" />, group: 'Operations' },
     { id: 'risks', label: 'Risks', icon: <AlertTriangle className="w-5 h-5" />, badge: highRisksCount, badgeColor: 'bg-rose-500 text-white', group: 'Operations' },
     { id: 'questions', label: 'Questions', icon: <HelpCircle className="w-5 h-5" />, badge: unresolvedQuestionsCount, badgeColor: 'bg-amber-500/80 text-black', group: 'Operations' },

@@ -258,5 +258,78 @@ export const api = {
   async searchGlobal(q: string) {
     const res = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}`);
     return res.json();
+  },
+
+  // AI Meeting Participant
+  async analyzeMeetingChunk(data: {
+    segment: any;
+    mode: string;
+    frequency: string;
+    previousSegments?: any[];
+  }) {
+    const res = await fetch(`${API_BASE}/participant/analyze-chunk`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async directAskParticipant(query: string, mode: string = 'smart_participant') {
+    const res = await fetch(`${API_BASE}/participant/direct-ask`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, mode })
+    });
+    return res.json();
+  },
+
+  async approveExtractedTask(draft: any, meetingId?: string, projectId?: string) {
+    const res = await fetch(`${API_BASE}/participant/approve-task`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ draft, meetingId, projectId })
+    });
+    return res.json();
+  },
+
+  async approveExtractedDecision(draft: any, meetingId?: string, projectId?: string) {
+    const res = await fetch(`${API_BASE}/participant/approve-decision`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ draft, meetingId, projectId })
+    });
+    return res.json();
+  },
+
+  async endParticipantMeeting(data: {
+    meetingId: string;
+    title: string;
+    transcripts: any[];
+    approvedTasksCount: number;
+    approvedDecisionsCount: number;
+  }) {
+    const res = await fetch(`${API_BASE}/participant/end-meeting`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  // AI Model & Training
+  async getModelTrainingStatus() {
+    const res = await fetch(`${API_BASE}/training/status`);
+    return res.json();
+  },
+
+  async trainModel(epochs: number = 40, learningRate: number = 0.15) {
+    const res = await fetch(`${API_BASE}/training/train`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ epochs, learningRate })
+    });
+    return res.json();
   }
 };
+

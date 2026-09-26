@@ -351,3 +351,97 @@ export interface KnowledgeEdge {
   target: string;
   relation: string;
 }
+
+export type AIParticipantMode = 'silent_observer' | 'smart_participant' | 'decision_advisor' | 'meeting_facilitator';
+export type AIParticipantFrequency = 'conservative' | 'balanced' | 'proactive';
+
+export interface AIParticipantConfig {
+  mode: AIParticipantMode;
+  frequency: AIParticipantFrequency;
+  voiceEnabled: boolean;
+  voiceSpeed: number;
+  voicePitch: number;
+  autoExtractTasks: boolean;
+  autoVerifyDecisions: boolean;
+  bargeInAllowed: boolean;
+  proactiveInterventionThreshold: number; // 0-100
+}
+
+export interface AIParticipantIntervention {
+  id: string;
+  timestamp: string;
+  intent: 'direct_answer' | 'proactive_clarification' | 'conflict_warning' | 'decision_confirmation' | 'task_assignment_summary' | 'blocker_alert' | 'agenda_guidance';
+  spokenText: string;
+  detailedAnalysis?: string;
+  evidenceQuotes: string[];
+  suggestedAction?: {
+    type: 'create_task' | 'confirm_decision' | 'resolve_conflict' | 'ask_clarification';
+    payload: any;
+  };
+  confidence: number;
+  userDismissed?: boolean;
+}
+
+export interface ExtractedActionItemDraft {
+  id: string;
+  meetingId: string;
+  title: string;
+  description: string;
+  ownerName: string;
+  ownerId?: string;
+  ownerAvatar?: string;
+  priority: TaskPriority;
+  dueDate: string;
+  acceptanceCriteria: string[];
+  dependencies: string[];
+  riskScore: number;
+  evidenceQuote: string;
+  evidenceTimestamp: string;
+  evidenceSpeaker: string;
+  status: 'draft' | 'approved' | 'rejected';
+  createdTaskId?: string;
+}
+
+export interface ExtractedDecisionDraft {
+  id: string;
+  meetingId: string;
+  title: string;
+  description: string;
+  status: DecisionStatus;
+  confidence: number;
+  evidenceQuote: string;
+  evidenceTimestamp: string;
+  evidenceSpeaker: string;
+  reason: string;
+  conflictWarning?: string;
+  reviewStatus: 'draft' | 'approved' | 'rejected';
+  createdDecisionId?: string;
+}
+
+export interface ModelEvaluationMetrics {
+  precision: number;
+  recall: number;
+  f1Score: number;
+  taskOwnerAccuracy: number;
+  deadlinesAccuracy: number;
+  blockerDetectionF1: number;
+  decisionClassificationF1: number;
+  falsePositiveSpeakingRate: number;
+  testSetSize: number;
+  evaluatedAt: string;
+}
+
+export interface ModelTrainingHistoryItem {
+  id: string;
+  version: string;
+  epochs: number;
+  datasetSize: number;
+  trainLoss: number[];
+  valLoss: number[];
+  finalF1: number;
+  trainedAt: string;
+  status: 'idle' | 'training' | 'completed' | 'failed';
+  metrics: ModelEvaluationMetrics;
+  notes: string;
+}
+

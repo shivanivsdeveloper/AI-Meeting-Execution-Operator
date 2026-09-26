@@ -21,6 +21,8 @@ import { TeamPage } from './pages/TeamPage';
 import { AnalyticsPage } from './pages/AnalyticsPage';
 import { IntegrationsPage } from './pages/IntegrationsPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { AIParticipantPage } from './pages/AIParticipantPage';
+import { ModelTrainingPage } from './pages/ModelTrainingPage';
 import { LiveMeetingRoom } from './components/meetings/LiveMeetingRoom';
 import { Meeting } from './types';
 import { Sparkles, CheckCircle2, ArrowRight, Play, X, Bot } from 'lucide-react';
@@ -219,6 +221,10 @@ const AppContent: React.FC = () => {
               openLiveMeeting={() => setIsLiveMeetingOpen(true)}
             />
           )}
+
+          {activeTab === 'ai-participant' && <AIParticipantPage setActiveTab={setActiveTab} />}
+
+          {activeTab === 'model-training' && <ModelTrainingPage />}
 
           {activeTab === 'meetings' && (
             <MeetingsPage

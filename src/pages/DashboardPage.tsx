@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Sparkles, CheckSquare, AlertTriangle, TrendingUp, 
-  ShieldCheck, Mic, ArrowRight, Play, CheckCircle2, Clock, Users, Flame 
+  ShieldCheck, Mic, ArrowRight, Play, CheckCircle2, Clock, Users, Flame, Bot 
 } from 'lucide-react';
 import { useMeeting } from '../context/MeetingContext';
 import { AIExecutiveBrief } from '../components/ai/AIExecutiveBrief';
@@ -130,15 +130,45 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
         {/* Right: Recent Meetings & Active Sprints */}
         <div className="space-y-6">
+          {/* Quick Launch: Interactive AI Meeting Participant */}
+          <div className="glass-card rounded-2xl p-6 border border-brand-500/40 bg-gradient-to-r from-brand-950/60 via-dark-850 to-indigo-950/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 glow-brand shadow-xl relative overflow-hidden">
+            <div className="space-y-1.5 relative z-10">
+              <div className="flex items-center gap-2">
+                <span className="flex items-center gap-1.5 text-xs font-extrabold text-brand-300 uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-brand-500/20 border border-brand-500/30">
+                  <Bot className="w-3.5 h-3.5 text-brand-400 animate-pulse" />
+                  New AI Feature
+                </span>
+                <span className="text-[10px] font-mono text-emerald-400 font-bold">
+                  Voice & Direct Interaction Ready
+                </span>
+              </div>
+              <h4 className="text-base font-extrabold text-white tracking-tight">
+                AI Meeting Participant Studio
+              </h4>
+              <p className="text-xs text-slate-300 max-w-md">
+                Deploy the AI as an active team member with live speech synthesis, context-aware Q&A, conflict checking, and instant task execution.
+              </p>
+            </div>
+
+            <button
+              onClick={() => setActiveTab('ai-participant')}
+              className="px-5 py-3 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-accent-cyan hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-extrabold shadow-xl shadow-brand-500/30 flex items-center gap-2 flex-shrink-0 transition-all group relative z-10 hover:scale-[1.02]"
+            >
+              <Mic className="w-4 h-4 text-brand-200 group-hover:scale-110 transition-transform" />
+              <span>Launch AI Participant</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+
           {/* Quick Launch Live Studio */}
-          <div className="glass-card rounded-2xl p-6 border border-brand-500/30 bg-gradient-to-br from-brand-950/40 via-dark-850 to-dark-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="glass-card rounded-2xl p-6 border border-white/10 bg-dark-850/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 text-xs font-bold text-brand-300 uppercase tracking-wider mb-1">
-                <Mic className="w-4 h-4 text-brand-400 animate-pulse" />
+                <Mic className="w-4 h-4 text-brand-400" />
                 Live Meeting Studio
               </div>
               <h4 className="text-base font-bold text-white">
-                Launch Live Meeting with Real-Time AI Copilot
+                Start Live Diarized Meeting Recording
               </h4>
               <p className="text-xs text-slate-400 mt-1">
                 Speaker diarization, real-time decision capture, and conflict detection.
@@ -147,10 +177,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
             <button
               onClick={openLiveMeeting}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-brand-500/30 flex items-center gap-2 flex-shrink-0 transition-all"
+              className="px-4 py-2.5 rounded-xl bg-dark-800 hover:bg-dark-750 text-slate-200 border border-white/10 text-xs font-bold shadow-md flex items-center gap-2 flex-shrink-0 transition-all"
             >
               <Play className="w-4 h-4 fill-current" />
-              <span>Start Live Meeting</span>
+              <span>Record Meeting</span>
             </button>
           </div>
 

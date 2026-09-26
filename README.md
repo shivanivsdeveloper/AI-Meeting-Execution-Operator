@@ -37,6 +37,18 @@ PREPARE NEXT MEETING
 
 ### Key Highlights
 - **Interactive 13-Step Guided Master Tour**: 1-click end-to-end demonstration featuring the *AuraPay Platform* sprint planning scenario.
+- **Interactive AI Meeting Participant Studio**:
+  - Live virtual team member that listens, speaks via SpeechSynthesis, and directly participates in discussions.
+  - 4 Configurable Participation Modes: *Silent Observer*, *Smart Participant*, *Decision Advisor*, and *Meeting Facilitator*.
+  - Speaking frequency controls (*Conservative*, *Balanced*, *Proactive*) with conversational silence precision.
+  - Barge-In interrupt capability ("Stop Speaking" control) to immediately yield floor to humans.
+  - Cross-meeting conflict detection, missing ownership/deadline clarification, and decision confirmation.
+  - Real-time Action & Decision Review Queue: 1-click approval directly creating database records in the workspace task management engine.
+- **Reproducible ML Training & Evaluation Pipeline**:
+  - Task-specific classifier & entity extractor fine-tuned for meeting intent classification, action-item extraction, blocker detection, and conversational silence trigger suppression.
+  - Built-in dataset partitioning (Train/Val/Test) without topic leakage.
+  - Comprehensive held-out test set evaluation: Precision, Recall, F1, Task Owner Accuracy, Deadline Accuracy, and False-Positive Speaking Trigger Rate.
+  - Interactive training console & checkpoint version management (`/model-training`).
 - **Signature Visualizations**:
   - **Execution Orbit**: Meeting center orbited by live interactive Decision, Task, Risk, Commitment, and Verification nodes.
   - **Decision-to-Execution Timeline**: Multi-stage chronological pipeline tracking progress from spoken words to verified code.
@@ -70,7 +82,12 @@ npm run dev
 - **Frontend Client**: [http://localhost:5173](http://localhost:5173)
 - **Backend API Server**: [http://localhost:5000](http://localhost:5000)
 
-### 3. Build for Production
+### 3. Run ML Pipeline Verification Tests
+```bash
+npx tsx server/testParticipant.ts
+```
+
+### 4. Build for Production
 ```bash
 npm run build
 ```
@@ -79,6 +96,7 @@ npm run build
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons, Canvas & SVG Visualizations
+- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons, Canvas & SVG Visualizations, Web Speech API / SpeechSynthesis
 - **Backend**: Node.js, Express, TypeScript, TSX, JWT Auth, Relational In-Memory Store with Demo Seed Data
-- **AI & Multi-Agent Engine**: Multi-agent pipeline (Transcript Agent, Decision Agent, Task Agent, Risk Agent, Execution Agent, Follow-up Agent, Verification Agent, Moderator Agent) with Gemini & OpenAI provider abstraction hooks
+- **AI & Multi-Agent Engine**: Multi-head TF-IDF & Logistic Gradient Descent Classifier + Multi-agent pipeline (Transcript Agent, Decision Agent, Task Agent, Risk Agent, Execution Agent, Follow-up Agent, Verification Agent, Moderator Agent) with Gemini & OpenAI provider abstraction hooks
+
